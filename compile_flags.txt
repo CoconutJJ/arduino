@@ -1,0 +1,5 @@
+-Iavr-gcc/avr/include
+-Iavr-gcc/avr/avr/include
+-Lavr-gcc/avr/lib
+-Lavr-gcc/avr/avr/lib
+--gcc-toolchain=avr-gcc/avr

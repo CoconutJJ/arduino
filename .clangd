@@ -1,0 +1,2 @@
+CompileFlags:
+	Compiler: "/opt/avr-gcc/bin/avr-gcc"
