@@ -3,6 +3,11 @@
 This repository is dedicated to learning about Arduino and the ATmega328p
 microcontroller. 
 
+**Important:** This respository does not use the Arduino abstraction layer built
+on top the AVR libc. So there are no methods like `digitalWrite()`, `setup()`
+or `loop()`. If you wish to work on top of the Arduino abstraction layer, this
+tutorial is not neccessary, just download the Arduino IDE and hit upload.
+
 ## Getting Started: Installing the development toolchain
 
 There are several ways to obtain the Arduino developement toolchain. The easiest
@@ -52,3 +57,6 @@ upload: hello.hex
 
 ## ATmega328p DIP edition Pin Diagram
 ![](docs/ATmega328p_pin_diagram.png)
+
+The datasheet for the ATmega328p microcontroller can be downloaded at
+[https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)
