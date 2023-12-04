@@ -3,7 +3,7 @@
 This repository is dedicated to learning about Arduino and the ATmega328p
 microcontroller. 
 
-## Compiler
+## Getting Started: Installing the development toolchain
 
 There are several ways to obtain the Arduino developement toolchain. The easiest
 way is to piggyback on the `avr-gcc` toolchain installed with the Arduino IDE.
@@ -19,10 +19,36 @@ The following toolchain components need to be installed
   3. avr-libc
   4. avrdude (for uploading code to the arduino)
 
-A tutorial for installing all these components can be found at (https://www.nongnu.org/avr-libc/user-manual/install_tools.html#path)[https://www.nongnu.org/avr-libc/user-manual/install_tools.html#path]
+A tutorial for installing all these components can be found at [https://www.nongnu.org/avr-libc/user-manual/install_tools.html#path](https://www.nongnu.org/avr-libc/user-manual/install_tools.html#path)
 
+There are two files, `config.sub` and `config.guess` that seem to be out of
+date for the latest release of avr-libc. Before the configure step, it is 
+advisable to replace these two files with the latest version found at 
+[https://github.com/gcc-mirror/gcc/tree/master](https://github.com/gcc-mirror/gcc/tree/master)
 
+## Compile, Link and Upload
 
-The code in this repository can be compiled using the `avr-gcc` compiler.
+Once you have installed the toolchain, the compile, link and uplaod process
+to the Arduino is also not trivial. The following is the Makefile used for
+compiling the code in the hello-world directory. This Makefile assumes the
+toolchain was installed in the repository root under a directory named `avr-gcc/`. 
 
-The code in this repository focuses on the using
+```make
+CC=avr-gcc/avr/bin/avr-gcc
+MMCU=atmega328p
+CPU_CLK_SPEED=16000000UL
+PROGRAMMER=arduino
+AVRDUDE=avr-gcc/avr/bin/avrdude
+OBJCOPY=avr-gcc/avr/bin/avr-objcopy
+
+hello: hello.c
+	$(CC) -Os -mmcu=$(MMCU) -DF_CPU=$(CPU_CLK_SPEED) hello.c -o hello.elf
+	$(OBJCOPY) -j .text -j .data -O ihex hello.elf hello.hex
+
+upload: hello.hex
+	$(AVRDUDE) -c $(PROGRAMMER) -p $(MMCU) -P /dev/cu.usbmodem1101 -U flash:w:hello.hex:i
+	
+```
+
+## ATmega328p DIP edition Pin Diagram
+![](docs/ATmega328p_pin_diagram.png)
