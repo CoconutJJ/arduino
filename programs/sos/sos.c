@@ -10,19 +10,19 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-void _pd7_enable ()
+static void _pd7_enable ()
 {
         PORTD |= (1 << PD7);
         return;
 }
 
-void _pd7_disable ()
+static void _pd7_disable ()
 {
         PORTD &= ~(1 << PD7);
         return;
 }
 
-void dot ()
+static void dot ()
 {
         _delay_ms (125);
         _pd7_enable ();
@@ -30,7 +30,7 @@ void dot ()
         _pd7_disable ();
 }
 
-void dash ()
+static void dash ()
 {
         _delay_ms (250);
         _pd7_enable ();

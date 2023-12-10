@@ -55,8 +55,20 @@ upload: hello.hex
 	
 ```
 
+## Programs
+
+### SOS Program
+
+The SOS program blinks an LED attached to PIN 7 on the arduino in a SOS pattern
+
+### Traffic Light Simulator
+
+Simulates a Traffic light cycle
+
 ## ATmega328p DIP edition Pin Diagram
 ![](docs/ATmega328p_pin_diagram.png)
 
 The datasheet for the ATmega328p microcontroller can be downloaded at
 [https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)
+
+
