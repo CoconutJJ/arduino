@@ -3,3 +3,5 @@
 -Lavr-gcc/avr/lib
 -Lavr-gcc/avr/avr/lib
 --gcc-toolchain=avr-gcc/avr
+-mmcu=atmega328p 
+-DF_CPU=16000000UL

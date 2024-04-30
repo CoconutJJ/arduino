@@ -1,0 +1,3 @@
+-I/Users/david/Documents/Programming/arduino/lib/include
+-L/Users/david/Documents/Programming/arduino/lib/lib
+-lusb-1.0
