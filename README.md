@@ -3,6 +3,8 @@
 This repository is dedicated to learning about Arduino and the ATmega328p
 microcontroller. 
 
+I have a Arduino UNO R3.
+
 **Important:** This respository does not use the Arduino abstraction layer built
 on top the AVR libc. So there are no methods like `digitalWrite()`, `setup()`
 or `loop()`. If you wish to work on top of the Arduino abstraction layer, this
@@ -57,6 +59,9 @@ upload: hello.hex
 
 ## Programs
 
+Many of the are Proof of Concepts, don't expect anything too advanced. I have a plan to make a automatic plant watering
+circuit. Still need to buy a soil moisture detector and pump.
+
 ### SOS Program
 
 The SOS program blinks an LED attached to PIN 7 on the arduino in a SOS pattern
@@ -64,6 +69,10 @@ The SOS program blinks an LED attached to PIN 7 on the arduino in a SOS pattern
 ### Traffic Light Simulator
 
 Simulates a Traffic light cycle
+
+### Serial UART Communication
+
+Work in progress: A CLI and arduino program that allows for communication between the device and the computer through USB.
 
 ## ATmega328p DIP edition Pin Diagram
 ![](docs/ATmega328p_pin_diagram.png)

@@ -11,6 +11,6 @@ serial.hex: serial.c
 
 
 upload: serial.hex
-	$(AVRDUDE) -c $(PROGRAMMER) -p $(MMCU) -P /dev/cu.usbmodem101 -U flash:w:serial.hex:i
+	$(AVRDUDE) -c $(PROGRAMMER) -p $(MMCU) -P /dev/cu.usbmodem2101 -U flash:w:serial.hex:i
 	
 
