@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
-#include <sys/_types/_null.h>
 #include <sys/fcntl.h>
+#include <sys/termios.h>
 #include <termios.h>
 #include <unistd.h>
 
@@ -21,8 +21,7 @@ int main (int argc, char **argv)
                 { 0 }
         };
 
-        int stopbits = -1;
-        int databits = -1;
+        int stopbits = -1, databits = -1;
         char *device_file = NULL;
         enum PARITY_SETTING paritybits;
 
@@ -62,6 +61,32 @@ int main (int argc, char **argv)
         struct termios config;
 
         cfmakeraw (&config);
+
+        switch (paritybits) {
+        case EVEN:
+                config.c_cflag &= ~(PARODD);
+                config.c_cflag |= PARENB;
+                break;
+        case ODD:
+                config.c_cflag |= PARODD;
+                config.c_cflag |= PARENB;
+                break;
+        case DISABLED: config.c_cflag &= ~(PARENB); break;
+        default:
+                fprintf (stderr, "ERROR: invalid paritybits flag value\n");
+                exit (EXIT_FAILURE);
+                break;
+        }
+
+        switch (stopbits) {
+        case 1: config.c_cflag &= ~(CSTOPB); break;
+        case 2: config.c_cflag |= (CSTOPB); break;
+        default:
+                fprintf (stderr, "ERROR: invalid stopbits flag value, must be either 1 or 2.\n");
+                exit (EXIT_FAILURE);
+                break;
+        }
+
         config.c_cflag |= (CLOCAL | CREAD);
         config.c_iflag &= ~(IXOFF | IXANY);
         config.c_cc[VMIN] = 0;  // you likely don't want to change this
@@ -83,6 +108,6 @@ int main (int argc, char **argv)
 
         buf[254] = '\0';
         printf ("%s", buf);
-        
+
         return 0;
 }
